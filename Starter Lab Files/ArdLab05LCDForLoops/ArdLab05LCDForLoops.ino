@@ -62,9 +62,12 @@ void loop() {
   lcd.autoscroll();
   
   //#2 Describe what this loop does
-  for (int counter = 0; counter < 10; counter++) {
-    lcd.print(counter);
-    delay(500);
+  for (int counter = 0; counter < 100; counter++) {
+    if(counter % 5 = 0){
+      lcd.print(counter);
+      delay(500);
+    }
+    
   }
   // turn off automatic scrolling
   lcd.noAutoscroll();
