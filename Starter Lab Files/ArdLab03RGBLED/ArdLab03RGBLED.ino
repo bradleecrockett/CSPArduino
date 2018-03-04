@@ -25,7 +25,7 @@
  * 
  */
 
-//Global Variables (constants) that specify which pins are used for the LED
+//Global Variables (or constants) that specify which pins are used for the LED
 //Constants are usually in all CAPS
 const int REDPIN = 9, GREENPIN = 6, BLUEPIN = 5;
 const int REDPOTPIN = A0;
@@ -47,6 +47,20 @@ void setup(){
   // different seed numbers each time the sketch runs.
   // randomSeed() will then shuffle the random function.
   randomSeed(analogRead(5));
+  
+  //Run a series of colors through the rgbLED at startup
+  //this will tell you that it is on (uncomment below to enable)
+//  rgbLed(255,0,0);  //red
+//  delay(1000);      //for one second
+ 
+//  rgbLed(0,255,0);  //green
+//  delay(1000);      //for one second
+ 
+//  rgbLed(0,0,255);  //blue
+//  delay(1000);      //for one second
+
+//  rgbLed(random(255), random(255), random(255));  //PsuedoRandom color
+//  delay(1000);      //for one second
 }
 
 void loop() {
@@ -56,6 +70,8 @@ void loop() {
 
   //read the analog value on the potentiometer
   redPotValue = analogRead(REDPOTPIN);
+  //map() the value read from the potentiometer (between 0 and 1023 or 10bit value)
+  //to a value between 0 and 255 an 8bit value that the rgb LED accepts
   redOutput = map(redPotValue, 0, 1023, 0, 255);
   
   //print the potvalue to the serial monitor
@@ -64,20 +80,11 @@ void loop() {
   Serial.println(redOutput);
   
   //use the pot value to power the red pin of the LED
-  rgbLed(redOutput, 0, 0);
-
+  rgbLed(redOutput, 0, 0); 
   
-//  rgbLed(255,0,0);  //red
-//  delay(1000);
-//  
-//  rgbLed(0,255,0);  //green
-//  delay(1000);
-//  
-//  rgbLed(0,0,255);  //blue
-//  delay(1000);
-//
-//  rgbLed(random(255), random(255), random(255));  //PsuedoRandom color
-//  delay(1000);
+  //TODO: 1) Connect 2 more potentiometers 1 for blue and one for green
+  //Then write the code to control the blue and green values with 
+  //the potentiometers.
   
 }
 
@@ -85,7 +92,7 @@ void loop() {
  * This method accepts 3 input values ranging from 0 - 255
  * it then displays the RGB color with the LED
  * Note: This method is specific to this program and uses
- * specific global variables (not only local variables)
+ * specific global variables, constants actually (not only local variables)
  */
 void rgbLed(int red, int green, int blue){
   analogWrite(REDPIN,red);
