@@ -42,6 +42,10 @@ void setup(){
   
   Serial.begin(9600);
 
+}
+
+void loop() {
+
   // -------------- RGB Blink Section -------------
   // if analog input pin 5 is unconnected, random analog
   // noise will cause the call to randomSeed() to generate
@@ -83,27 +87,9 @@ void setup(){
 //  //use the pot value to power the red pin of the LED
 //  rgbLed(redOutput, 0, 0);
 //  //*************************************
-}
 
-void loop() {
-  //call the RGBLed function defined below.
-  //the 3 values determine the how much red, green and blue
-  //are mixed together in the LED
 
-  //read the analog value on the potentiometer
-  redPotValue = analogRead(REDPOTPIN);
-  //map() the value read from the potentiometer (between 0 and 1023 or 10bit value)
-  //to a value between 0 and 255 an 8bit value that the rgb LED accepts
-  redOutput = map(redPotValue, 0, 1023, 0, 255);
-  
-  //print the potvalue to the serial monitor
-  Serial.print(redPotValue);
-  Serial.print("\t");
-  Serial.println(redOutput);
-  
-  //use the pot value to power the red pin of the LED
-  rgbLed(redOutput, 0, 0); 
-  
+
   //TODO: 1) Connect 2 more potentiometers 1 for blue and one for green
   //Then write the code to control the blue and green values with 
   //the potentiometers.
