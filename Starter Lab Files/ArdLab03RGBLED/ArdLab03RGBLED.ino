@@ -42,6 +42,7 @@ void setup(){
   
   Serial.begin(9600);
 
+  // -------------- RGB Blink Section -------------
   // if analog input pin 5 is unconnected, random analog
   // noise will cause the call to randomSeed() to generate
   // different seed numbers each time the sketch runs.
@@ -50,17 +51,38 @@ void setup(){
   
   //Run a series of colors through the rgbLED at startup
   //this will tell you that it is on (uncomment below to enable)
-//  rgbLed(255,0,0);  //red
-//  delay(1000);      //for one second
- 
-//  rgbLed(0,255,0);  //green
-//  delay(1000);      //for one second
- 
-//  rgbLed(0,0,255);  //blue
-//  delay(1000);      //for one second
+  rgbLed(255,0,0);  //red
+  delay(1000);      //for one second
 
-//  rgbLed(random(255), random(255), random(255));  //PsuedoRandom color
-//  delay(1000);      //for one second
+  // random(min, max) would return an integer between min (inclusive) and max (exclusive)
+  // random(10, 20) returns an int between 10 and 19
+ 
+  rgbLed(0,255,0);  //green
+  delay(1000);      //for one second
+ 
+  rgbLed(0,0,255);  //blue
+  delay(1000);      //for one second
+  
+  // random(256) returns a random integer between 0 and 255
+  rgbLed(random(256), random(256), random(256));  //PsuedoRandom color
+
+  delay(1000);      //for one second
+  //----------------------------------------------
+  
+
+//  //*************************************
+//  //read the analog value on the potentiometer
+//  redPotValue = analogRead(REDPOTPIN);
+//  redOutput = map(redPotValue, 0, 1023, 0, 255);
+//  
+//  //print the potvalue to the serial monitor
+//  Serial.print(redPotValue);
+//  Serial.print("\t");
+//  Serial.println(redOutput);
+//  
+//  //use the pot value to power the red pin of the LED
+//  rgbLed(redOutput, 0, 0);
+//  //*************************************
 }
 
 void loop() {
@@ -99,4 +121,3 @@ void rgbLed(int red, int green, int blue){
   analogWrite(GREENPIN, green);
   analogWrite(BLUEPIN, blue);
 }
-
